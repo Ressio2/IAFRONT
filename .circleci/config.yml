@@ -1,0 +1,27 @@
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
+version: 2.1
+
+jobs:
+  deploy-docker:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Deploy
+          command: scp -r public_html azureuser@13.68.233.64:/home/azureuser/
+      - run:
+          name: Configure backend
+          command: ssh azureuser@13.68.233.64 "sed -i 's/localhost/13.68.233.64/' /home/azureuser/public_html/index.html"
+      - run:
+          name: Start
+          command: ssh azureuser@13.68.233.64 "(docker stop qieam-front || true) && (docker rm -f qieam-front || true) && (docker run --rm --name qieam-front -d -p 80:80 -v /home/azureuser/public_html:/usr/share/nginx/html:ro nginx:latest)"
+        
+
+# Invoke jobs via workflows
+# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+workflows:
+  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
+    jobs:
+      - deploy-docker
+
