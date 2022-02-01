@@ -8,13 +8,13 @@ jobs:
       - checkout
       - run:
           name: Deploy
-          command: scp -r public_html azureuser@13.68.233.64:/home/azureuser/
+          command: scp -r public_html epsi@20.111.37.189:/home/epsi/
       - run:
           name: Configure backend
-          command: ssh azureuser@13.68.233.64 "sed -i 's/localhost/13.68.233.64/' /home/azureuser/public_html/index.html"
+          command: ssh epsi@20.111.37.189 "sed -i 's/localhost/13.68.233.64/' /home/azureuser/public_html/index.html"
       - run:
           name: Start
-          command: ssh azureuser@13.68.233.64 "(docker stop qieam-front || true) && (docker rm -f qieam-front || true) && (docker run --rm --name qieam-front -d -p 80:80 -v /home/azureuser/public_html:/usr/share/nginx/html:ro nginx:latest)"
+          command: ssh epsi@20.111.37.189 "(docker stop qieam-front || true) && (docker rm -f qieam-front || true) && (docker run --rm --name qieam-front -d -p 80:80 -v /home/azureuser/public_html:/usr/share/nginx/html:ro nginx:latest)"
         
 
 # Invoke jobs via workflows
