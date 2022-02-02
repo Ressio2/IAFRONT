@@ -118,12 +118,8 @@
                 $("#addFriend").click(function () {
                     $.ajax({
                         
-                        validFriend = $("#newName").val();
-                        texte_a_remplacer = array('<script>.*<\/script>');
-                        texte_remplacement = array('');
-                        result = validFriend.replace(/[<>]/, '');
+                        result = $("#newName").val().replaceall(/[<>]/g, '');
         
-       
                         url: "http://localhost:4567/api/friend?name=" + result,
                         data: "",
                         success: function (friend) {
@@ -139,10 +135,7 @@
                 $("#deleteFriend").click(function () {
                     $.ajax({
                         
-                        validFriend = $("#newName").val();
-                        texte_a_remplacer = array('<script>.*<\/script>');
-                        texte_remplacement = array('');
-                        result = validFriend.replace(/[<>]/, '');
+                        result = $("#newName").val().replaceall(/[<>]/g, '');
         
                         url: "http://localhost:4567/api/friend?name=" + result,
                         data: "",
