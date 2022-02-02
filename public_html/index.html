@@ -118,12 +118,13 @@
                 $("#addFriend").click(function () {
                     $.ajax({
                         
-                        $texte_a_remplacer = array('@<script[^>]*?>.*?<\/script>@si');
-                        $texte_remplacement = array('');
-                        $_POST['#newName'] = preg_replace($texte_a_remplacer, $texte_remplacement, $_POST['#newName']);
+                        validFriend = $("#newName").val();
+                        texte_a_remplacer = array('<script>.*<\/script>');
+                        texte_remplacement = array('');
+                        result = validFriend.replace(/[<>]/, '');
         
        
-                        url: "http://localhost:4567/api/friend?name=" + $("#newName").val(),
+                        url: "http://localhost:4567/api/friend?name=" + result,
                         data: "",
                         success: function (friend) {
                             $("#listoffriends").append("<div class=\"col-md-4\"><div class=\"media\"><img src=\"https://i.pravatar.cc/150?u=" + btoa(friend.name) + " \"/><div class=\"media-body\"><h5 class=\"mt-0\">" + friend.name + "</h5></div></div></div>");
@@ -137,7 +138,13 @@
                 });
                 $("#deleteFriend").click(function () {
                     $.ajax({
-                        url: "http://localhost:4567/api/friend?name=" + $("#oldName").val(),
+                        
+                        validFriend = $("#newName").val();
+                        texte_a_remplacer = array('<script>.*<\/script>');
+                        texte_remplacement = array('');
+                        result = validFriend.replace(/[<>]/, '');
+        
+                        url: "http://localhost:4567/api/friend?name=" + result,
                         data: "",
                         success: function (friend) {
                             console.log(friend)
