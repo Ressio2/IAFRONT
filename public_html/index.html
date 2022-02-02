@@ -123,7 +123,7 @@
                         url: "http://localhost:4567/api/friend?name=" + result,
                         data: "",
                         success: function (friend) {
-                            $("#listoffriends").append("<div class=\"col-md-4\"><div class=\"media\"><img src=\"https://i.pravatar.cc/150?u=" + btoa(friend.name) + " \"/><div class=\"media-body\"><h5 class=\"mt-0\">" + friend.name + "</h5></div></div></div>");
+                            $("#listoffriends").append("<div class=\"col-md-4\"><div class=\"media\"><img src=\"https://i.pravatar.cc/150?u=" + btoa(friend.name) + " \"/><div class=\"media-body\"><h5 class=\"mt-0\">" + result + "</h5></div></div></div>");
                         },
                         dataType: "json",
                         beforeSend: function (xhr) {
