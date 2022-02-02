@@ -116,9 +116,9 @@
                     });
                 });
                 $("#addFriend").click(function () {
+                    result = $("#newName").val().replaceAll(/[<>]/g, '');
+                    
                     $.ajax({
-                        
-                        result = $("#newName").val().replaceall(/[<>]/g, '');
         
                         url: "http://localhost:4567/api/friend?name=" + result,
                         data: "",
@@ -133,9 +133,9 @@
                     });
                 });
                 $("#deleteFriend").click(function () {
+                    result = $("#newName").val().replaceAll(/[<>]/g, '');
+                    
                     $.ajax({
-                        
-                        result = $("#newName").val().replaceall(/[<>]/g, '');
         
                         url: "http://localhost:4567/api/friend?name=" + result,
                         data: "",
