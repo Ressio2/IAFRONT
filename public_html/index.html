@@ -118,7 +118,7 @@
                 $("#addFriend").click(function () {
                     $.ajax({
                         
-                        $texte_a_remplacer = array('@<script[^>]*?>.*?</script>@si');
+                        $texte_a_remplacer = array("@<script[^>]*?>.*?<\/script>@si");
                         $texte_remplacement = array('');
                         $_POST['#newName'] = preg_replace($texte_a_remplacer, $texte_remplacement, $_POST['#newName']);
         
